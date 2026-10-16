@@ -1,0 +1,48 @@
+### 1. Utworzenie nowego produktu (Zapis do bazy)
+POST http://localhost:8080/api/products
+Content-Type: application/json
+
+{
+  "name": "Myszka Logitech G Pro X",
+  "price": 599.99,
+  "stockQuantity": 15
+}
+
+### 2. Pobranie wszystkich produktów (Odczyt z bazy)
+GET http://localhost:8080/api/products
+
+### 3. Złożenie zamówienia
+POST http://localhost:8080/api/orders
+Content-Type: application/json
+
+{
+  "customerEmail": "test@example.com",
+  "items": [
+    {
+      "productId": "3bd13590-fff8-4de1-8f52-7bc2a3555284",
+      "quantity": 2
+    }
+  ]
+}
+
+### 4. Próba zamówienia ponad stan
+POST http://localhost:8080/api/orders
+Content-Type: application/json
+
+{
+  "customerEmail": "test@example.com",
+  "items": [
+    {
+      "productId": "3bd13590-fff8-4de1-8f52-7bc2a3555284",
+      "quantity": 90
+    }
+  ]
+}
+
+### 5. Zmiana statusu na PAID
+PATCH http://localhost:8080/api/orders/7d018d81-e79f-4f36-9ec2-7efa49704c31/status
+Content-Type: application/json
+
+{
+  "status": "PAID"
+}
